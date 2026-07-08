@@ -513,7 +513,7 @@ namespace Numeric_List_Generator
 			statusStripStatistic.Text = "statusStripStatistic";
 			toolTip.SetToolTip(statusStripStatistic, "Statusbar für statistische Angaben");
 			statusStripStatistic.Enter += SetStatusBar_Enter;
-			statusStripStatistic.Leave += SetStatusBar_Enter;
+			statusStripStatistic.Leave += ClearStatusBar_Leave;
 			statusStripStatistic.MouseEnter += SetStatusBar_Enter;
 			statusStripStatistic.MouseLeave += ClearStatusBar_Leave;
 			// 
