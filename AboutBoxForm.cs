@@ -100,7 +100,7 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>Handles the KeyDown event of the ExportDataSheetForm.
+		/// <summary>Handles the KeyDown event of the AboutBoxForm.
 		/// Closes the form when the Escape key is pressed.</summary>
 		/// <param name="sender">The event source.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
