@@ -32,7 +32,7 @@ namespace Numeric_List_Generator
 			catch (InvalidOperationException ex)
 			{
 				// Handle specific InvalidOperationException
-				const string message = "Ein ungültiger Vorgang ist aufgetreten. Bitte versuchen Sie es erneut.";
+				const string message = "Ein ungÃ¼ltiger Vorgang ist aufgetreten. Bitte versuchen Sie es erneut.";
 				Debug.WriteLine(value: ex);
 				Logger.Error(exception: ex, message: message);
 				LogError(ex);
@@ -56,7 +56,7 @@ namespace Numeric_List_Generator
 		private static void LogError(Exception ex)
 		{
 			// Implement logging logic here (e.g., log to a file or monitoring system)
-			Console.WriteLine(value: $@"Fehler: {ex.Message}\n{ex.StackTrace}");
+			Console.WriteLine(value: $"Fehler: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
 		}
 
 		/// <summary>
