@@ -32,7 +32,8 @@ namespace Numeric_List_Generator
 			KeyPreview = true; // Ensures the form receives key events before the controls
 		}
 
-		/// <summary>Handles the Load event of the <see cref="LicenseForm"/>.</summary>
+		/// <summary>Handles the Load event of the <see cref="LicenseForm"/>.</summary>
+
 		/// <param name="sender">object sender</param>
 		/// <param name="e">event arguments</param>
 		/// <remarks>The parameters <paramref name="e"/> and <paramref name="sender"/> are not needed, but must be indicated.</remarks>
@@ -61,8 +62,7 @@ namespace Numeric_List_Generator
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void ClearStatusBar_Leave(object sender, EventArgs e) => SetStatusBar(text: string.Empty);
-
-		/// <summary>Handles the KeyDown event of the ExportDataSheetForm.
+		/// <summary>Handles the KeyDown event of the <see cref="LicenseForm"/>. Closes the form when the Escape key is pressed.</summary>
 		/// Closes the form when the Escape key is pressed.</summary>
 		/// <param name="sender">The event source.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
