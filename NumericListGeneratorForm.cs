@@ -6,28 +6,42 @@ using NLog;
 
 namespace Numeric_List_Generator
 {
-	/// <summary>Represents the main form for generating numeric lists.</summary>
+	/// <summary>
+	/// Represents the main form for generating numeric lists.
+	/// </summary>
 	[DebuggerDisplay(value: $"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 	public partial class NumericListGeneratorForm : Form
 	{
-		/// <summary>Logger instance for logging messages and exceptions.</summary>
+		/// <summary>
+		/// Logger instance for logging messages and exceptions.
+		/// </summary>
 		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-		/// <summary>Indicates whether the cancellation of the list generation process is requested.</summary>
+		/// <summary>
+		/// Indicates whether the cancellation of the list generation process is requested.
+		/// </summary>
 		private bool _isCancelling;
 
-		/// <summary>Stores the duration of the list generation process.</summary>
+		/// <summary>
+		/// Stores the duration of the list generation process.
+		/// </summary>
 		private TimeSpan _timeSpan;
 
-		/// <summary>Stores the backup of the list for undo operation.</summary>
+		/// <summary>
+		/// Stores the backup of the list for undo operation.
+		/// </summary>
 		private string _backupListUndo = string.Empty, _backupListRedo = string.Empty;
 
-		/// <summary>Stores the start time of the list generation process.</summary>
+		/// <summary>
+		/// Stores the start time of the list generation process.
+		/// </summary>
 		private DateTime _startTime, _endTime;
 
 		#region Constructor
 
-		/// <summary>Initializes a new instance of the <see cref="NumericListGeneratorForm"/> class.</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NumericListGeneratorForm"/> class.
+		/// </summary>
 		public NumericListGeneratorForm()
 		{
 			InitializeComponent();
@@ -40,19 +54,25 @@ namespace Numeric_List_Generator
 
 		#region	Helpers
 
-		/// <summary>Get Debugger Display</summary>
-		/// <returns>Return the debugger display</returns>
+		/// <summary>
+		/// Returns a string that represents the current object for debugging purposes.
+		/// </summary>
+		/// <returns>A string that represents the current object.</returns>
 		private string GetDebuggerDisplay() => ToString();
 
-		/// <summary>Set a specific text to the status bar</summary>
-		/// <param name="text">text with some information</param>
+		/// <summary>
+		/// Sets a specific text to the status bar.
+		/// </summary>
+		/// <param name="text">The text with some information to display in the status bar.</param>
 		private void SetStatusBar(string text)
 		{
 			toolStripStatusLabelInformation.Enabled = !string.IsNullOrEmpty(value: text);
 			toolStripStatusLabelInformation.Text = text;
 		}
 
-		/// <summary>Updates the status bar with the current statistics of the list.</summary>
+		/// <summary>
+		/// Updates the status bar with the current statistics of the list.
+		/// </summary>
 		private void UpdateStatusBarStatistic()
 		{
 			if (toolStripStatusLabelSize.ForeColor == SystemColors.ControlText)
@@ -69,7 +89,9 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>Disables all controls on the form.</summary>
+		/// <summary>
+		/// Disables all controls on the form.
+		/// </summary>
 		private void DisableControls()
 		{
 			toolStripMenuItemList.Enabled = false;
@@ -90,7 +112,9 @@ namespace Numeric_List_Generator
 			textBoxList.Enabled = false;
 		}
 
-		/// <summary>Enables all controls on the form.</summary>
+		/// <summary>
+		/// Enables all controls on the form.
+		/// </summary>
 		private void EnableControls()
 		{
 			toolStripMenuItemList.Enabled = true;
@@ -109,10 +133,14 @@ namespace Numeric_List_Generator
 			textBoxList.Enabled = true;
 		}
 
-		/// <summary>Checks if the form should stay on top of other windows.</summary>
+		/// <summary>
+		/// Checks if the form should stay on top of other windows.
+		/// </summary>
 		private void CheckStayOnTop() => TopMost = toolStripMenuItemSettingsStayOnTop.Checked;
 
-		/// <summary>Generates the list asynchronously.</summary>
+		/// <summary>
+		/// Generates the list asynchronously.
+		/// </summary>
 		private async Task GenerateListAsync()
 		{
 			buttonCancelProgress.Enabled = true;
@@ -158,7 +186,9 @@ namespace Numeric_List_Generator
 
 		#region Form event handlers
 
-		/// <summary>Handles the Load event of the form.</summary>
+		/// <summary>
+		/// Handles the Load event of the form.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void NumericListGeneratorForm_Load(object sender, EventArgs e)
@@ -176,7 +206,9 @@ namespace Numeric_List_Generator
 
 		#region Enter event handlers
 
-		/// <summary>Called when the mouse pointer moves over a control.</summary>
+		/// <summary>
+		/// Called when the mouse pointer moves over a control.
+		/// </summary>
 		/// <param name="sender">The event source.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void SetStatusBar_Enter(object sender, EventArgs e)
@@ -199,7 +231,9 @@ namespace Numeric_List_Generator
 
 		#region Leave event handlers
 
-		/// <summary>Clears the information text of the status bar.</summary>
+		/// <summary>
+		/// Clears the information text of the status bar.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void ClearStatusBar_Leave(object sender, EventArgs e) => SetStatusBar(text: string.Empty);
@@ -208,7 +242,9 @@ namespace Numeric_List_Generator
 
 		#region Click event handlers
 
-		/// <summary>Handles the Click event of the Add To List button.</summary>
+		/// <summary>
+		/// Handles the Click event of the Add To List button.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonAddToList_Click(object sender, EventArgs e)
@@ -239,7 +275,9 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>Handles the Click event of the Copy List button.</summary>
+		/// <summary>
+		/// Handles the Click event of the Copy List button.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonCopyList_Click(object sender, EventArgs e)
@@ -249,7 +287,9 @@ namespace Numeric_List_Generator
 			_ = MessageBox.Show(text: @"Die Liste wurde in die Zwischenablage kopiert.");
 		}
 
-		/// <summary>Handles the Click event of the Save List button.</summary>
+		/// <summary>
+		/// Handles the Click event of the Save List button.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonSaveList_Click(object sender, EventArgs e)
@@ -280,7 +320,9 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>Handles the Click event of the Delete List button.</summary>
+		/// <summary>
+		/// Handles the Click event of the Delete List button.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonDeleteList_Click(object sender, EventArgs e)
@@ -290,7 +332,9 @@ namespace Numeric_List_Generator
 			UpdateStatusBarStatistic();
 		}
 
-		/// <summary>Handles the Click event of the Create List button.</summary>
+		/// <summary>
+		/// Handles the Click event of the Create List button.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonCreateList_Click(object sender, EventArgs e)
@@ -300,7 +344,9 @@ namespace Numeric_List_Generator
 			ButtonAddToList_Click(sender: sender, e: e);
 		}
 
-		/// <summary>Handles the Click event of the Undo button.</summary>
+		/// <summary>
+		/// Handles the Click event of the Undo button.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonUndo_Click(object sender, EventArgs e)
@@ -313,7 +359,9 @@ namespace Numeric_List_Generator
 			UpdateStatusBarStatistic();
 		}
 
-		/// <summary>Handles the Click event of the Redo button.</summary>
+		/// <summary>
+		/// Handles the Click event of the Redo button.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonRedo_Click(object sender, EventArgs e)
@@ -326,7 +374,9 @@ namespace Numeric_List_Generator
 			UpdateStatusBarStatistic();
 		}
 
-		/// <summary>Handles the Click event of the Size status label.</summary>
+		/// <summary>
+		/// Handles the Click event of the Size status label.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripStatusLabelSize_Click(object sender, EventArgs e)
@@ -342,7 +392,9 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>Handles the Click event of the Lines status label.</summary>
+		/// <summary>
+		/// Handles the Click event of the Lines status label.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripStatusLabelLines_Click(object sender, EventArgs e)
@@ -358,7 +410,9 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>Handles the Click event of the TimeSpan status label.</summary>
+		/// <summary>
+		/// Handles the Click event of the TimeSpan status label.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripStatusLabelTimeSpan_Click(object sender, EventArgs e)
@@ -374,7 +428,9 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>Handles the Click event of the Style status label.</summary>
+		/// <summary>
+		/// Handles the Click event of the Style status label.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripStatusLabelStyle_Click(object sender, EventArgs e)
@@ -385,7 +441,9 @@ namespace Numeric_List_Generator
 			Invalidate(invalidateChildren: true);
 		}
 
-		/// <summary>Handles the Click event of the Info menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Info menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemInfo_Click(object sender, EventArgs e)
@@ -395,7 +453,9 @@ namespace Numeric_List_Generator
 			_ = formAboutBox.ShowDialog();
 		}
 
-		/// <summary>Handles the Click event of the License menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the License menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemLicense_Click(object sender, EventArgs e)
@@ -405,57 +465,79 @@ namespace Numeric_List_Generator
 			_ = formLicense.ShowDialog();
 		}
 
-		/// <summary>Handles the Click event of the Exit menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Exit menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemExit_Click(object sender, EventArgs e) => Close();
 
-		/// <summary>Handles the Click event of the Create List menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Create List menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListCreate_Click(object sender, EventArgs e) => ButtonCreateList_Click(sender: sender, e: e);
 
-		/// <summary>Handles the Click event of the Add List menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Add List menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListAdd_Click(object sender, EventArgs e) => ButtonAddToList_Click(sender: sender, e: e);
 
-		/// <summary>Handles the Click event of the Delete List menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Delete List menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListDelete_Click(object sender, EventArgs e) => ButtonDeleteList_Click(sender: sender, e: e);
 
-		/// <summary>Handles the Click event of the Undo menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Undo menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListUndo_Click(object sender, EventArgs e) => ButtonUndo_Click(sender: sender, e: e);
 
-		/// <summary>Handles the Click event of the Redo menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Redo menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListRedo_Click(object sender, EventArgs e) => ButtonRedo_Click(sender: sender, e: e);
 
-		/// <summary>Handles the Click event of the Copy List menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Copy List menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListCopy_Click(object sender, EventArgs e) => ButtonCopyList_Click(sender: sender, e: e);
 
-		/// <summary>Handles the Click event of the Save List menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Save List menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemListSave_Click(object sender, EventArgs e) => ButtonSaveList_Click(sender: sender, e: e);
 
-		/// <summary>Handles the Click event of the Disable Visual Style menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Disable Visual Style menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemSettingsDisableVisualStyle_Click(object sender, EventArgs e) => ToolStripStatusLabelStyle_Click(sender: sender, e: e);
 
-		/// <summary>Handles the Click event of the Stay On Top menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Stay On Top menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemSettingsStayOnTop_Click(object sender, EventArgs e) => CheckStayOnTop();
 
-		/// <summary>Handles the Click event of the Batch menu item.</summary>
+		/// <summary>
+		/// Handles the Click event of the Batch menu item.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ToolStripMenuItemBatch_Click(object sender, EventArgs e)
@@ -471,8 +553,10 @@ namespace Numeric_List_Generator
 
 		#region KeyDown event handler
 
-		/// <summary>Handles the KeyDown event of the ExportDataSheetForm.
-		/// Closes the form when the Escape key is pressed.</summary>
+		/// <summary>
+		/// Handles the KeyDown event of the NumericListGeneratorForm.
+		/// Closes the form when the Escape key is pressed.
+		/// </summary>
 		/// <param name="sender">The event source.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
 		private void NumericListGeneratorForm_KeyDown(object? sender, KeyEventArgs e)
@@ -489,17 +573,23 @@ namespace Numeric_List_Generator
 
 		#region BackgroundWorker event handlers
 
-		/// <summary>Performs the asynchronous generation of the list in the background.</summary>
+		/// <summary>
+		/// Performs the asynchronous generation of the list in the background.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="System.ComponentModel.DoWorkEventArgs"/> instance containing the event data.</param>
 		private async void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e) => await GenerateListAsync();
 
-		/// <summary>Called when the progress of the background work changes.</summary>
+		/// <summary>
+		/// Called when the progress of the background work changes.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="System.ComponentModel.ProgressChangedEventArgs"/> instance containing the event data.</param>
 		private void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => progressBar.PerformStep();
 
-		/// <summary>Called when the background work is completed.</summary>
+		/// <summary>
+		/// Called when the background work is completed.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="System.ComponentModel.RunWorkerCompletedEventArgs"/> instance containing the event data.</param>
 		private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) => EnableControls();
@@ -507,8 +597,10 @@ namespace Numeric_List_Generator
 
 		#endregion
 
-		/// <summary>Handles the Click event of the Cancel Progress button.
-		/// Sets the isCancelling flag to true to indicate that the list generation process should be cancelled.</summary>
+		/// <summary>
+		/// Handles the Click event of the Cancel Progress button.
+		/// Sets the _isCancelling flag to true to indicate that the list generation process should be cancelled.
+		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ButtonCancelProgress_Click(object sender, EventArgs e) => _isCancelling = true;
