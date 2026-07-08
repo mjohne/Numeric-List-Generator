@@ -84,10 +84,15 @@ namespace Numeric_List_Generator
 				return;
 			}
 
-			// Check if the URL starts with "http://" or "https://", if not, prepend "http://"
+			// Ensure the URL has a scheme so it can be opened reliably
+ 			if (!url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
+ 			    !url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+ 			{
+ 				url = "https://" + url;
+ 			}
 			try
 			{
-				using Process _ = Process.Start(fileName: url);
+				using Process _ = Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
 			}
 			// Catch any exceptions that occur when trying to open the URL
 			catch (Exception ex)
@@ -100,7 +105,7 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>Handles the KeyDown event of the AboutBoxForm.
+		/// <summary>Handles the KeyDown event of the AboutBoxForm.
 		/// Closes the form when the Escape key is pressed.</summary>
 		/// <param name="sender">The event source.</param>
 		/// <param name="e">The <see cref="EventArgs"/> instance that contains the event data.</param>
