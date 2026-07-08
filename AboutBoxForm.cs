@@ -84,7 +84,7 @@ namespace Numeric_List_Generator
 				return;
 			}
 
-			// Ensure the URL has a scheme so it can be opened reliably
+			// Ensure the URL starts with http:// or https:// so it can be opened reliably
  			if (!url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
  			    !url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
  			{
