@@ -1,21 +1,15 @@
 ﻿namespace Numeric_List_Generator
 {
-	/// <summary>
-	/// 
-	/// </summary>
+	/// <summary>Represents the batch-processing form.</summary>
 	public partial class BatchForm : Form
 	{
-		/// <summary>
-		/// 
-		/// </summary>
+		<summary>Initializes a new instance of the <see cref="BatchForm"/> class.</summary>
 		public BatchForm()
 		{
 			InitializeComponent();
 		}
 
-		/// <summary>
-		/// Set a specific text to the status bar
-		/// </summary>
+		/// <summary>Set a specific text to the status bar</summary>
 		/// <param name="text">text with some information</param>
 		private void SetStatusBar(string text)
 		{
@@ -25,9 +19,7 @@
 
 		private void BatchForm_Load(object sender, EventArgs e) => SetStatusBar(text: string.Empty);
 
-		/// <summary>
-		/// Detect the accessibility description to set as information text in the status bar
-		/// </summary>
+		/// <summary>Detect the accessibility description to set as information text in the status bar</summary>
 		/// <param name="sender">object sender</param>
 		/// <param name="e">event arguments</param>
 		/// <remarks>The parameter <paramref name="e"/> is not needed, but must be indicated.</remarks>
@@ -47,9 +39,7 @@
 			}
 		}
 
-		/// <summary>
-		/// Clear the information text of the status bar
-		/// </summary>
+		/// <summary>Clear the information text of the status bar</summary>
 		/// <param name="sender">object sender</param>
 		/// <param name="e">event arguments</param>
 		/// <remarks>The parameters <paramref name="e"/> and <paramref name="sender"/> are not needed, but must be indicated.</remarks>
