@@ -32,7 +32,7 @@ namespace Numeric_List_Generator
 			KeyPreview = true; // Ensures the form receives key events before the controls
 		}
 
-		/// <summary>Loads the form</summary>
+		/// <summary>Handles the Load event of the <see cref="LicenseForm"/>.</summary>
 		/// <param name="sender">object sender</param>
 		/// <param name="e">event arguments</param>
 		/// <remarks>The parameters <paramref name="e"/> and <paramref name="sender"/> are not needed, but must be indicated.</remarks>
