@@ -43,7 +43,7 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>Logs the error details to the console or a logging system.</summary>
+		/// <summary>Writes the error details to the console.</summary>
 		/// <param name="ex">The exception to log.</param>
 		private static void LogError(Exception ex)
 		{
