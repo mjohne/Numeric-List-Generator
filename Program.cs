@@ -3,19 +3,13 @@ using NLog;
 
 namespace Numeric_List_Generator
 {
-	/// <summary>
-	/// Main class of the program.
-	/// </summary>
+	/// <summary>Main class of the program.</summary>
 	internal static class Program
 	{
-		/// <summary>
-		/// Logger instance for logging messages and exceptions.
-		/// </summary>
+		/// <summary>Logger instance for logging messages and exceptions.</summary>
 		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
+		/// <summary>The main entry point for the application.</summary>
 		[STAThread]
 		private static void Main()
 		{
@@ -49,9 +43,7 @@ namespace Numeric_List_Generator
 			}
 		}
 
-		/// <summary>
-		/// Logs the error details to the console or a logging system.
-		/// </summary>
+		/// <summary>Logs the error details to the console or a logging system.</summary>
 		/// <param name="ex">The exception to log.</param>
 		private static void LogError(Exception ex)
 		{
@@ -59,9 +51,7 @@ namespace Numeric_List_Generator
 			Console.WriteLine(value: $"Fehler: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
 		}
 
-		/// <summary>
-		/// Displays an error message to the user.
-		/// </summary>
+		/// <summary>Displays an error message to the user.</summary>
 		/// <param name="message">The error message to display.</param>
 		private static void ShowErrorMessage(string message)
 		{
