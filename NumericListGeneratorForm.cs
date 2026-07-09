@@ -504,7 +504,6 @@ namespace Numeric_List_Generator
 		/// <param name="e">The <see cref="System.ComponentModel.RunWorkerCompletedEventArgs"/> instance containing the event data.</param>
 		private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) => EnableControls();
 
-
 		#endregion
 
 		/// <summary>Handles the Click event of the Cancel Progress button.
